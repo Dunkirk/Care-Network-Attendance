@@ -1,0 +1,182 @@
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  /* width: 400px; */
+  border: 2px solid red;
+  padding: o.5em;
+  padding-bottom: 1em;
+  margin-bottom: 2em;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 0.5em 0.5em 0.5em 1.5em;
+  margin: -0.5em;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  list-style: square;
+}
+
+root { 
+  display: block;
+}
+
+.links {
+  text-align: center;
+  background: darkblue;
+  color: white;
+  padding: .1em;
+}
+
+.links a {
+  color: white;
+}
+
+.subreport {
+  text-align: center;
+}
+
+form {
+}
+
+.navigation {
+  text-align: center;
+	font-weight: bold;
+}
+
+.left_navigation {
+	text-align: left;
+	font-weight: bold;
+}
+
+.right_navigation {
+	text-align: right;
+	font-weight: bold;
+}
+
+body {
+  font-family: ubuntu, droid sans, verdana, arial, helvetica, sans-serif;
+  background-color: #fff;
+}
+
+a {
+	color: #080B74;
+}
+
+a:visited {
+	color: #8D003B;
+}
+
+a:hover {
+  color: #ffbe00;
+}
+
+html {
+	/* background-color: #A4F43D; */
+	/* background-image: url("/images/Background.jpg"); */
+}
+
+body {
+}
+
+#header {
+	background-color: #4E51D8;
+	padding: .25em;
+	color: #080B74;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+}
+
+#footer {
+	color: #8D003B;
+	background-color: #EC3B86;
+  text-align: left;
+	padding: .25em;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+}
+
+table {
+  padding: .25em;
+  border: 1px solid #84E900;
+  margin: auto;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+}
+
+#first_name
+{
+	background-color: #4E51D8;
+}
+
+td {
+	border-top: 1px solid #D9005B;
+	border-left: 1px solid #D9005B;
+	padding: .15em;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+td.networks {
+	vertical-align: top;
+}
+
+th {
+  color: #569700;
+  background-color: #A4F43D;
+  text-align: center;
+	padding: .15em;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+th.networks {
+	vertical-align: top;
+  background-color: #FFDB73;
+}
+
+tr.rowB {
+  background-color: #FFDB73;
+}
+
+h1 {
+  font-size: 150%;
+  font-weight: bold;
+  padding: .25em;
+}
+
+h2 {
+  color: #569700;
+  background-color: #A4F43D;
+  padding: .15em;
+  font-size: 125%;
+  font-weight: bold;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+h3 {
+	color: #FFBE00;
+	font-size: 125%;
+}
+
+ul {
+	list-style-position: inside;
+}
+
+.note {
+	text-align: left;
+}

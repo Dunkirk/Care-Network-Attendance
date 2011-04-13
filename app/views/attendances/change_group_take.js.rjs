@@ -1,0 +1,5 @@
+page.replace_html "date_take", :partial => "date_take"
+page.visual_effect :highlight, "date_take"
+
+page.replace_html "form_take", :partial => "form_take"
+page.visual_effect :highlight, "form_take"

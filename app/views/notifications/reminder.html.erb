@@ -1,0 +1,11 @@
+<%= @leader.full_name %>,
+
+Your group has absences that are unaccounted for. Please update the attendance status for them.
+
+<% @absences.each do |a| %>
+	<%= a.person.full_name %> - <%= a.status.designation %>
+	<%= a.person.residence.full_address %>
+	<%= a.person.residence.phone_number %>
+<% end %>
+
+http://localhost:3000/attendances/followup

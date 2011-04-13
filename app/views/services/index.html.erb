@@ -1,0 +1,17 @@
+<h2>List Services</h2>
+
+<table>
+	<tr><th>Service Time and Date<th>Network<th>Description</tr>
+	<% for service in @services %>
+		<tr>
+			<td><%= link_to service.service.strftime("%A, %B %d, %Y at %I:%M%p "),
+				service %>
+			<td><%= service.network.designation %>
+			<td><%= service.description %>
+		</tr>
+	<% end %>
+</table>
+
+<p class="navigation">
+	<%= link_to 'New service', new_service_path %>
+</p>
