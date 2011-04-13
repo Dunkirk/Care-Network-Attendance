@@ -67,11 +67,11 @@ class AttendancesController < ApplicationController
 	end
 	
 	def take
-		if session[:group]
-			@group = Group.find(session[:group])
+		if session[:group_id]
+			@group = Group.find(session[:group_id])
 			@network = @group.network
-		elsif session[:network]
-			@network = Network.find(session[:network])
+		elsif session[:network_id]
+			@network = Network.find(session[:network_id])
 			@group = nil
 		else
 			@network = Network.find(1) # Default to the whole church
@@ -80,13 +80,11 @@ class AttendancesController < ApplicationController
 		@services = Service.find_all_by_network_id(@network.id,
 			:conditions => "DATE(service) <= '#{Date.today.strftime('%y-%m-%d')}'",
 			:limit => 10, :order => "service DESC")
-		if session[:service]
-			@service = Service.find(session[:service])
+		if session[:service_id]
+			@service = Service.find(session[:service_id])
 		else
 			@service = @services.first
 		end
-		logger = Logger.new(STDERR)
-		logger.info("Service: #{session[:service]}")
 		unless @group.nil?
 			@attendances = Array.new()
 			@group.people.each do |member|
@@ -97,13 +95,13 @@ class AttendancesController < ApplicationController
 
 	def change_group_take
 		@group = Group.find(params[:group_id])
-		session[:group] = @group.id
+		session[:group_id] = @group.id
 		@network = @group.network
 		@services = Service.find_all_by_network_id(@network.id,
 			:conditions => "DATE(service) <= '#{Date.today.strftime('%y-%m-%d')}'",
 			:limit => 10, :order => "service DESC")
-		if session[:service]
-			@service = Service.find(session[:service])
+		if session[:service_id]
+			@service = Service.find(session[:service_id])
 		else
 			@service = @services.first
 		end
@@ -116,7 +114,7 @@ class AttendancesController < ApplicationController
 
 	def change_date_take
 		@service = Service.find(params[:service_id])
-		session[:service] = @service.id
+		session[:service_id] = @service.id
 		@group = Group.find(params[:group_id], :include => :people)
 		@attendances = Array.new()
 		@group.people.each do |member|
@@ -132,20 +130,20 @@ class AttendancesController < ApplicationController
 	end
 
 	def report
-		if session[:network]
-			@network = Network.find(session[:network])
+		if session[:network_id]
+			@network = Network.find(session[:network_id])
 		else
 			@network = Network.find(1) # Whole church.
 		end
 		@services = Service.find_all_by_network_id(@network.id,
 			:conditions => "DATE(service) <= '#{Date.today.strftime('%y-%m-%d')}'",
 			:order => "service DESC")
-    if session[:service]
-			@service = Service.find(session[:service])
+    if session[:service_id]
+			@service = Service.find(session[:service_id])
 		else
 			@service = @services.first
+			session[:service_id] = @service.id
 		end
-		session[:service_id] = @service.id
 		@attendances = Attendance.find_all_by_service_id(@service.id, :conditions =>
 			"status_id != 1", :include => :status)
 		params[:c] = "person.last_name"
@@ -154,21 +152,21 @@ class AttendancesController < ApplicationController
 
   def change_group_report
     @network = Network.find(params[:network_id])
-		session[:network] = @network.id
+		session[:network_id] = @network.id
     @services = Service.find_all_by_network_id(@network.id,
 			:conditions => "DATE(service) <= '#{Date.today.strftime('%y-%m-%d')}'",
 			:order => "service DESC")
 		# Technically, we should check if the service id in the session is contained
 		# in the @services array before using it.
-		if session[:service]
-			@service = Service.find(session[:service])
+		if session[:service_id]
+			@service = Service.find(session[:service_id])
 		else
     	@service = @services.first
 		end
 		if @service
 			@attendances = Attendance.find_all_by_service_id(@service.id, :conditions =>
 				"status_id != 1", :include => :status, :order => "statuses.designation")
-			session[:service_id] = @service.id
+			session[:service_id_id] = @service.id
 		else
 			@attendances = []
 		end
@@ -179,7 +177,6 @@ class AttendancesController < ApplicationController
 		session[:service_id] = @service.id
 		@attendances = Attendance.find_all_by_service_id(@service.id, :conditions =>
 			"status_id != 1", :include => :status, :order => "statuses.designation")
-		session[:service] = @service.id
 	end
 
 	def change_sort_report
@@ -198,11 +195,11 @@ class AttendancesController < ApplicationController
 	# The following is a direct copy of "take", replacing with "followup". There's
 	# got to be a more DRY way of doing this...
 	def followup
-		if session[:group]
-			@group = Group.find(session[:group])
+		if session[:group_id]
+			@group = Group.find(session[:group_id])
 			@network = @group.network
-		elsif session[:network]
-			@network = Network.find(session[:network])
+		elsif session[:network_id]
+			@network = Network.find(session[:network_id])
 			@group = nil
 		else
 			@network = Network.find(1) # Default to the whole church
@@ -211,8 +208,8 @@ class AttendancesController < ApplicationController
 		@services = Service.find_all_by_network_id(@network.id,
 			:conditions => "DATE(service) <= '#{Date.today.strftime('%y-%m-%d')}'",
 			:limit => 10, :order => "service DESC")
-		if session[:service]
-			@service = Service.find(session[:service])
+		if session[:service_id]
+			@service = Service.find(session[:service_id])
 		else
 			@service = @services.first
 		end
@@ -227,13 +224,13 @@ class AttendancesController < ApplicationController
 
 	def change_group_followup
 		@group = Group.find(params[:group_id])
-		session[:group] = @group.id
+		session[:group_id] = @group.id
 		@network = @group.network
 		@services = Service.find_all_by_network_id(@network.id,
 			:conditions => "DATE(service) <= '#{Date.today.strftime('%y-%m-%d')}'",
 			:limit => 10, :order => "service DESC")
-		if session[:service]
-			@service = Service.find(session[:service])
+		if session[:service_id]
+			@service = Service.find(session[:service_id])
 		else
 			@service = @services.first
 		end
@@ -246,7 +243,7 @@ class AttendancesController < ApplicationController
 
 	def change_date_followup
 		@service = Service.find(params[:service_id])
-		session[:service] = @service.id
+		session[:service_id] = @service.id
 		@group = Group.find(params[:group_id], :include => :people)
 		@attendances = Array.new()
 		@group.people.each do |member|

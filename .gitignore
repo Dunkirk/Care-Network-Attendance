@@ -2,3 +2,4 @@ log/
 legacy/
 database.yml
 local.yml
+*.swp
