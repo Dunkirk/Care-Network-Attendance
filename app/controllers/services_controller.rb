@@ -2,11 +2,17 @@ class ServicesController < ApplicationController
 
 	before_filter :admin_required
 
+	cattr_reader :per_page
+  @@per_page = 10
+
 	# GET /services
 	# GET /services.xml
 	def index
-		@services = Service.find(:all, :conditions => "service <= NOW()",
-			:order => "service DESC", :limit => 20)
+		#@services = Service.find(:all, :conditions => "service <= NOW()",
+		#	:order => "service DESC", :limit => 20)
+		@services = Service.paginate :page => params[:page],
+			:conditions => "service <= NOW()",
+			:order => "service DESC", :limit => 20
 		respond_to do |format|
 			format.html # index.html.erb
 			format.xml	{ render :xml => @services }

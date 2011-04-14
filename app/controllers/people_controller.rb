@@ -2,10 +2,15 @@ class PeopleController < ApplicationController
 	
 	before_filter :admin_required, :except => [ :directory ]
 	
+	cattr_reader :per_page
+  @@per_page = 10
+
 	# GET /people
 	# GET /people.xml
 	def index
-		@people = Person.all(:order => "last_name, first_name", :include => :type)
+		#@people = Person.all(:order => "last_name, first_name", :include => :type)
+		@people = Person.paginate :page => params[:page], :order => 'last_name, first_name',
+			:include => :type
 
 		respond_to do |format|
 			format.html # index.html.erb

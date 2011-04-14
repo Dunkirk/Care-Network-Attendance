@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
 	#before_filter :login_required, :only => ['change', 'logout']
 	before_filter :admin_required, :only => ['index', 'new', 'create', 'edit', 'update']
-	before_filter :login_required, :except => ['login']
+	before_filter :login_required, :except => [:login, :reset]
 
 	def index
 		@users = User.all

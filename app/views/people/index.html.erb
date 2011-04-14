@@ -26,6 +26,9 @@
 	</tbody>
 </table>
 
+<p class="navigation"><%= page_entries_info @people %></br>
+<%= will_paginate @people %></p>
+
 <p class="navigation">
 <%= link_to 'New person', new_person_path %> |
 <%= link_to 'Ungrouped', :controller => :people, :action => 'ungrouped' %> |

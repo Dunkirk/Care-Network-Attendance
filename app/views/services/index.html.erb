@@ -12,6 +12,9 @@
 	<% end %>
 </table>
 
+<p class="navigation"><%= page_entries_info @services %></br>
+<%= will_paginate @services %></p>
+
 <p class="navigation">
 	<%= link_to 'New service', new_service_path %>
 </p>

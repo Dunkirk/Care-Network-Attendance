@@ -2,13 +2,15 @@ class ResidencesController < ApplicationController
 	
 	before_filter :admin_required
 	
+	cattr_reader :per_page
+  @@per_page = 10
+
 	# GET /residences
 	# GET /residences.xml
 	def index
-
-	# See the controller.
-	#@residences = Residence.find(:all, :order => :address1, :include => :head)
-		@residences = Residence.all(:order => :address1, :include => :people)
+		#@residences = Residence.all(:order => :address1, :include => :people)
+		@residences = Residence.paginate :page => params[:page], :order => :address1,
+			:include => :people
 
 		respond_to do |format|
 			format.html # index.html.erb
