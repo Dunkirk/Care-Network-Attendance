@@ -7,7 +7,7 @@
 #errorExplanation {
   /* width: 400px; */
   border: 2px solid red;
-  padding: o.5em;
+  padding: 0.5em;
   padding-bottom: 1em;
   margin-bottom: 2em;
   background-color: #f0f0f0;
@@ -32,26 +32,8 @@
   list-style: square;
 }
 
-root { 
-  display: block;
-}
-
-.links {
-  text-align: center;
-  background: darkblue;
-  color: white;
-  padding: .1em;
-}
-
-.links a {
-  color: white;
-}
-
 .subreport {
   text-align: center;
-}
-
-form {
 }
 
 .navigation {
@@ -71,7 +53,8 @@ form {
 
 body {
   font-family: ubuntu, droid sans, verdana, arial, helvetica, sans-serif;
-  background-color: #fff;
+  background-color: #FFEDB3;
+	background-image: url('/images/parchment.jpg');
 }
 
 a {
@@ -86,29 +69,18 @@ a:hover {
   color: #ffbe00;
 }
 
-rowB a:hover {
-	color: #080B74;
-}
-
-html {
-	/* background-color: #A4F43D; */
-	/* background-image: url("/images/Background.jpg"); */
-}
-
-body {
-}
-
 #header {
-	background-color: #4E51D8;
+	color: #183B72;
+	background-color: #6387C1;
 	padding: .25em;
-	color: #080B74;
 	border-radius: 10px;
 	-moz-border-radius: 10px;
 }
 
 #footer {
-	color: #8D003B;
-	background-color: #EC3B86;
+	/* complimentary */
+  color: #A67800;
+  background-color: #FFCA40;
   text-align: left;
 	padding: .25em;
 	border-radius: 10px;
@@ -117,7 +89,7 @@ body {
 
 table {
   padding: .25em;
-  border: 1px solid #84E900;
+  border: 1px solid #660BAB;
   margin: auto;
 	border-radius: 10px;
 	-moz-border-radius: 10px;
@@ -129,42 +101,50 @@ table {
 }
 
 td {
-	border-top: 1px solid #D9005B;
-	border-left: 1px solid #D9005B;
+	border-top: 1px solid #9440D5;
+	border-left: 1px solid #9440D5;
 	padding: .15em;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 }
+
 td.networks {
 	vertical-align: top;
 }
 
 th {
-  color: #569700;
-  background-color: #A4F43D;
+	color: #41046F;
+	background-color: #9440D5;
   text-align: center;
 	padding: .15em;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 }
+
 th.networks {
 	vertical-align: top;
   background-color: #FFDB73;
 }
 
-tr.rowB {
-  background-color: #FFDB73;
+tr:nth-child(even) {
+  background-color: #BFBB30;
+}
+
+tr:nth-child(even) a:hover {
+	color: #080B74;
 }
 
 h1 {
+	color: #183B72;
+	background-color: #6387C1;
   font-size: 150%;
   font-weight: bold;
   padding: .25em;
 }
 
 h2 {
-  color: #569700;
-  background-color: #A4F43D;
+  color: #977A1D;
+  background-color: #FFDF75;
   padding: .15em;
   font-size: 125%;
   font-weight: bold;
@@ -188,3 +168,4 @@ ul {
 .pagination {
 	text-align: center;
 }
+
