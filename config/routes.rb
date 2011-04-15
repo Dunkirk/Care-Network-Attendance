@@ -19,6 +19,8 @@ ActionController::Routing::Routes.draw do |map|
 	map.connect 'attendances/take', :controller => 'attendances', :action => 'take'
 	map.connect 'attendances/followup', :controller => 'attendances', :action => 'followup'
 	map.connect 'attendances/report', :controller => 'attendances', :action => 'report'
+	map.connect 'attendances/history', :controller => 'attendances', :action => 'history'
+	map.connect 'attendances/lookup', :controller => 'attendances', :action => 'lookup'
 	map.resources :attendances
 
 	map.resources :users

@@ -1,5 +1,5 @@
 class Person < ActiveRecord::Base
-	has_many :attendances
+	has_many :attendances, :dependent => :destroy
   has_many :memberships, :dependent => :destroy
 	has_many :groups, :through => :memberships
 	has_one :user
@@ -29,6 +29,5 @@ class Person < ActiveRecord::Base
 	end
 
 	validates_uniqueness_of :first_name, :scope => :last_name
-	#validates_uniqueness_of :email_address
 	
 end

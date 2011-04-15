@@ -6,7 +6,7 @@
 
 <% counter = 0 %>
 <% @residences.each do |residence| %>
-  <tr class="<%= cycle('rowA', 'rowB') %>">
+  <tr>
 		<td><%= link_to residence.address1, residence %>
 		<td><%= residence.address2 %>
 		<td><%= residence.city %>

@@ -40,6 +40,6 @@ td {
 	padding: 2px;
 }
 
-tr.rowA {
-  background-color: #FFDB73;
+tr:nth-child(even) {
+  background-color: #FFEDB3;
 }

@@ -11,8 +11,8 @@
 </head>
 <body>
 
+
 <div id="header">
-	<%= image_tag "logo_blue.png", :width => 96, :style => 'float: left; padding: 10px' %>
 	<h1><%= LOCAL['church_name'] %> Attendance</h1>
 	<p class="right_navigation">
 		<%= link_to 'Take', :controller => 'attendances', :action => 'take' %>
@@ -21,13 +21,14 @@
 		| <%= link_to "Directory", :controller => 'people', :action => 'directory' %></p>
 </div>
 
-<p style="color: green"><%= flash[:notice] %></p>
+<p class="flash"><%= flash[:notice] %></p>
 
 <%= yield  %>
 
 <div id="footer">
 <% if session[:admin] %>
 	<p class="navigation"><%= link_to "People", :people %>
+	| <%= link_to "History", :controller => 'attendances', :action => 'history' %>
 	| <%= link_to "Networks", :networks %>
 	| <%= link_to "Groups", :groups %>
 	| <%= link_to "Services", :services %>

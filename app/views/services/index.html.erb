@@ -4,8 +4,7 @@
 	<tr><th>Service Time and Date<th>Network<th>Description</tr>
 	<% for service in @services %>
 		<tr>
-			<td><%= link_to service.service.strftime("%A, %B %d, %Y at %I:%M%p "),
-				service %>
+			<td><%= link_to service.printable_date, service %>
 			<td><%= service.network.designation %>
 			<td><%= service.description %>
 		</tr>

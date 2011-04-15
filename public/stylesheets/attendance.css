@@ -53,46 +53,45 @@
 
 body {
   font-family: ubuntu, droid sans, verdana, arial, helvetica, sans-serif;
-  background-color: #FFEDB3;
-	background-image: url('/images/parchment.jpg');
+  background-color: #FFFFEE;
+	/* background-image: url('/images/parchment.jpg'); */
 }
 
 a {
-	color: #080B74;
+	color: #183B72;
 }
 
 a:visited {
-	color: #8D003B;
+	color: #3B1974;
 }
 
 a:hover {
-  color: #ffbe00;
+  color: #FFDF75;
 }
 
 #header {
 	color: #183B72;
 	background-color: #6387C1;
 	padding: .25em;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
 }
 
 #footer {
-	/* complimentary */
-  color: #A67800;
-  background-color: #FFCA40;
+	color: #183B72;
+	background-color: #6387C1;
   text-align: left;
 	padding: .25em;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
 }
 
 table {
   padding: .25em;
   border: 1px solid #660BAB;
   margin: auto;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
 }
 
 #first_name
@@ -104,8 +103,8 @@ td {
 	border-top: 1px solid #9440D5;
 	border-left: 1px solid #9440D5;
 	padding: .15em;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
 }
 
 td.networks {
@@ -113,25 +112,25 @@ td.networks {
 }
 
 th {
-	color: #41046F;
-	background-color: #9440D5;
+	color: #3B1974;
+	background-color: #AE8FE2;
   text-align: center;
 	padding: .15em;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
 }
 
 th.networks {
+	font-weight: bold;
 	vertical-align: top;
-  background-color: #FFDB73;
 }
 
 tr:nth-child(even) {
-  background-color: #BFBB30;
+  background-color: #FFEDB3;
 }
 
-tr:nth-child(even) a:hover {
-	color: #080B74;
+tr a:hover {
+	color: #977A1D;
 }
 
 h1 {
@@ -140,11 +139,13 @@ h1 {
   font-size: 150%;
   font-weight: bold;
   padding: .25em;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
 }
 
 h2 {
   color: #977A1D;
-  background-color: #FFDF75;
+  background-color: #FFE798;
   padding: .15em;
   font-size: 125%;
   font-weight: bold;
@@ -169,3 +170,14 @@ ul {
 	text-align: center;
 }
 
+.warning {
+	color: #972B1D;
+}
+
+h4 {
+	text-align: center;
+}
+
+.flash {
+	color: #3B1974;
+}

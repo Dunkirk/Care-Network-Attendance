@@ -1,0 +1,13 @@
+<h2>History for <%= @person.full_name %></h2>
+
+<table>
+	<tr><th>Service<th>Excuse<th>Note</tr>
+	<% @absences.each do |absence| %>
+		<tr><td><%= absence.service.printable_date %><td><%= absence.status.designation %>
+			<td><%= absence.note %></tr>
+	<% end %>
+</table>
+
+<h4><%= @absences.count %> absences in <%= @attendances.count %> services:
+(<%= sprintf("%0.2f%", 100 - (@absences.count.to_f / @attendances.count) * 100) %>)</h4>
+<p>&nbsp;</p>

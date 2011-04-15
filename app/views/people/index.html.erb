@@ -8,7 +8,7 @@
 	</thead>
 	<tbody>
   <% @people.each do |person| %>
-  	<tr class="<%= cycle('rowA', 'rowB') %>">
+  	<tr>
 			<td>
 				<% if person.picture.file? %>
 					<%= image_tag person.picture.url(:thumb) %>

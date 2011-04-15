@@ -2,7 +2,7 @@
 
 <table>
   <tr><th>Network<td><%= @service.network.designation %></th>
-  <tr><th>Date and Time<td><%= @service.service.strftime("%a, %b %d, %Y @ %I:%M %p") %></tr>
+  <tr><th>Date and Time<td><%= @service.printable_date %></tr>
   <tr><th>Description<td><%= @service.description %></tr>
 </table>
 

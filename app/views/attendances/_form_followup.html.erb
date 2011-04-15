@@ -4,7 +4,7 @@
     <% @attendances.sort! { |x, y| x.person.last_name <=> y.person.last_name } %>
     <% @attendances.each do |status| %>
       <% fields_for "attendance[]", status do |attendance_fields| %>
-				<tr class="<%= cycle('rowA', 'rowB') %>">
+				<tr>
 					<td><%= status.person.proper_name %>
 					<td><%= attendance_fields.collection_select(:status_id, Status.all, :id, :designation,
 						{ :selected => status.status_id.to_i }) %>

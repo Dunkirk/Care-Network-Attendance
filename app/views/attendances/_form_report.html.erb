@@ -3,16 +3,17 @@
   <tr>
     <th><%= sort_link 'Person', "person.last_name" %>
     <th><%= sort_link 'Group', "person.primary_group.designation" %>
-    <th><%= sort_link 'Status', "status.designation" %>
+    <th><%= sort_link 'Status', "status.id" %>
     <th>Contacted
     <th>Note
   </tr>
   <% @attendances.each do |attendance| %>
-    <tr class="<%= cycle('rowA', 'rowB') %>">
+    <tr>
       <td><%= attendance.person.full_name %>
       <td><%= attendance.person.groups[0].designation unless
 				attendance.person.groups.empty? %>
-      <td><%= attendance.status.designation %>
+			<td class="<%= colorize(attendance.status.id) %>">
+				<%= attendance.status.designation %>
       <td><%= check_box_tag :attendance, :contacted, attendance.contacted,
 				{ :disabled => true } %>
       <td class="note"><%= attendance.note %>

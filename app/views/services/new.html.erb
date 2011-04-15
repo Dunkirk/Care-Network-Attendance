@@ -5,7 +5,7 @@
   <table>
     <tr><th><%= f.label :network_id, "Network" %><td><%= collection_select(:service, :network_id,
 			Network.find(:all), :id, :designation) %></tr>
-    <tr><th><%= f.label :service %><td><%= datetime_select(:service, :service) %></tr>
+    <tr><th><%= f.label :service %><td><%= datetime_select(:service, :date_and_time) %></tr>
     <tr><th><%= f.label :description %><td><%= f.text_field :description%></tr>
 	</table>
 

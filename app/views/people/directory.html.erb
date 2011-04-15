@@ -4,7 +4,7 @@
 	<tr><th>Last Name<th>First name<th>Address<th>Phone<th>Dependents</tr>
 
 	<% @heads.each do |person| %>
-		<tr class="<%= cycle('rowA', 'rowB') %>">
+		<tr>
 			<td><%= person.last_name %>
 			<td><%= link_to person.first_name, person_path(person) %>
 				<% unless person.spouse.nil? %>
