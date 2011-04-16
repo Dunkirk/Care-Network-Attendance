@@ -28,6 +28,9 @@ table {
 	border: 1px solid lightgray;
 	border-collapse: collapse;
 	border-spacing: 0px;
+}
+
+.footer {
 	page-break-after: always;
 }
 

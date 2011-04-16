@@ -1,11 +1,16 @@
+<% limit = 50 %>
 <% counter = 0 %>
+<% page = 0 %>
 
 <% @heads.each do |person| %>
 
-	<% if counter % 56 == 0 || counter == 0 %>
+	<% if counter % limit == 0 || counter == 0 %>
 
-		<% if counter % 56 == 0 %>
+		<% page += 1 %>
+
+		<% if counter % limit == 0 && counter != 0 %>
 			</table>
+			<p class="footer">&nbsp;</p>
 		<% end %>
 
 		<h1><%= LOCAL['church_name'] %> Directory</h1>
