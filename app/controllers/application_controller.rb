@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
 	# from your application log (in this case, all fields with names like "password"). 
 	# filter_parameter_logging :password
 
+	layout :detect_browser
+
 	def sort_order(default)
 		"#{(params[:c] || default.to_s).gsub(/[\s;'\"]/,'')} #{params[:d] == 'down' ? 'DESC' : 'ASC'}"
 	end
@@ -69,5 +71,15 @@ protected
 		session[:return_to] = request.request_uri
 		redirect_to :controller => 'users', :action => 'login'
 	end
+
+  MOBILE_BROWSERS = ["android", "ipod", "opera mini", "blackberry", "palm","hiptop","avantgo","plucker", "xiino","blazer","elaine", "windows ce; ppc;", "windows ce; smartphone;","windows ce; iemobile", "up.browser","up.link","mmp","symbian","smartphone", "midp","wap","vodafone","o2","pocket","kindle", "mobile","pda","psp","treo"]
+
+  def detect_browser
+    agent = request.headers["HTTP_USER_AGENT"].downcase
+    MOBILE_BROWSERS.each do |m|
+      return "mobile" if agent.match(m)
+    end
+    return "application"
+  end
 
 end

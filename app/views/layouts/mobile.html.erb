@@ -5,7 +5,7 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title><%= LOCAL['church_name'] %> Attendance</title>
-  <%= stylesheet_link_tag 'attendance' %>
+  <%= stylesheet_link_tag 'mobile' %>
   <%= javascript_include_tag :defaults %>
   <meta name="viewport" content="width=device-width" />
 </head>
@@ -13,8 +13,7 @@
 
 
 <div id="header">
-	<h1><%= LOCAL["church_name"] %> Attendance</h1>
-	<p class="right_navigation">
+	<p class="navigation">
 		<%= link_to 'Take', :controller => 'attendances', :action => 'take' %>
 		| <%= link_to 'Followup', :controller => 'attendances', :action => 'followup' %>
     | <%= link_to 'Report', :controller => 'attendances', :action => 'report' %>
@@ -41,7 +40,7 @@
 <% else %>
 	<p class="navigation"><%= link_to "Login", :controller => "users", :action => "login" %></p>
 <% end %>
-<p class="right_navigation">Copyright &copy; 2010, <a href="mailto:david@davidkrider.com">David Krider</a><br/>
+<p class="navigation">Copyright &copy; 2010, <a href="mailto:david@davidkrider.com">David Krider</a><br/>
 Licensed under the GPLv3</p>
 </div>
 

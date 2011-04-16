@@ -54,6 +54,7 @@
 body {
   font-family: ubuntu, droid sans, verdana, arial, helvetica, sans-serif;
   background-color: #FFFFEE;
+	font-size: 8pt;
 	/* background-image: url('/images/parchment.jpg'); */
 }
 
@@ -80,7 +81,7 @@ a:hover {
 #footer {
 	color: #183B72;
 	background-color: #6387C1;
-  text-align: left;
+  text-align: center;
 	padding: .25em;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -180,8 +181,4 @@ h4 {
 
 .flash {
 	color: #3B1974;
-}
-
-.left {
-	float: left;
 }
