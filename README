@@ -1,8 +1,3 @@
-Plugins:
-wicked_pdf
-paperclip
-acts_as_tree
-
 Care Network Attendance is a Ruby-on-Rails web application designed to take attendance in a distributed fashion for small-group-based churches. The important part is the followup by the small group leaders, and communicating the reason why people were absent. In this way, concerns can be quickly addressed, and people can be helped.
 
     Copyright (C) 2010 David Krider
@@ -20,6 +15,12 @@ Care Network Attendance is a Ruby-on-Rails web application designed to take atte
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
+Plugins used:
+  * wicked_pdf
+  * paperclip
+  * acts_as_tree
+  * will_paginate
 
 Stock RoR README follows...
 
