@@ -266,8 +266,7 @@ class AttendancesController < ApplicationController
 		#	params[:service]["end(3i)".to_s].to_i) 
 		#@services = Service.all(:conditions => "date_and_time >= '#{start_date}' " +
 		#	"and date_and_time <= '#{end_date}'")
-		@attendances = Attendance.find_all_by_person_id(@person.id, :conditions => 
-			'status_id = 1')
+		@attendances = Attendance.find_all_by_person_id(@person.id)
 		@absences = Attendance.find_all_by_person_id(@person.id, :conditions => 
 			'status_id > 1', :include => :service, :order => 'services.date_and_time')
 	end

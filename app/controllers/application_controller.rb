@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
 
 	layout :detect_browser
 
+	# Never getting called. Fix the (supposed) problem, or take out?
 	def sort_order(default)
 		"#{(params[:c] || default.to_s).gsub(/[\s;'\"]/,'')} #{params[:d] == 'down' ? 'DESC' : 'ASC'}"
 	end

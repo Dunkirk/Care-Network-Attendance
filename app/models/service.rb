@@ -5,7 +5,7 @@ class Service < ActiveRecord::Base
 	validates_uniqueness_of :date_and_time, :scope => :network_id
 	
 	def printable_date
-		self.date_and_time.to_datetime.strftime("%a, %b %d, %Y @ %r")
+		self.date_and_time.to_datetime.strftime("%a, %b %d, %Y @ %H:%M %P")
 	end
 
 end
