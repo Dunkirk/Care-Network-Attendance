@@ -45,12 +45,18 @@ class UsersController < ApplicationController
 	
 	def update
 		@user = User.find(params[:id])
+		if params[:new_password] == params[:confirm]
+			@user.salt = random_string(6) if !@user.salt?
+			@user.password = encrypt(params[:new_password], @user.salt)
+		end	
 		respond_to do |format|
-			if @user.update_attributes(params[:user])
+			if @user.update_attributes(params[:user]) &&
+			 	params[:new_password] == params[:confirm]
 				flash[:notice] = 'User was successfully updated.'
 				format.html { redirect_to(@user) }
 				format.xml	{ head :ok }
 			else
+				flash[:notice] = 'Passwords (probably) didn\'t match.'
 				format.html { render :action => "edit" }
 				format.xml	{ render :xml => @user.errors, :status => :unprocessable_entity }
 			end

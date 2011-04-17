@@ -6,6 +6,8 @@
 		<tr><th><%= f.label :username %><td><%= f.text_field :username %></tr>
 		<tr><th><%= f.label :person %><td><%= f.collection_select :person_id,
 			Person.all(:order => "last_name, first_name"), :id, :proper_name %></tr>
+		<tr><th><%= f.label :new_password %><td><%= password_field_tag :new_password %></tr>
+		<tr><th><%= f.label :confirm %><td><%= password_field_tag :confirm %></tr>
 		<tr><th><%= f.label :administrator %><td><%= f.check_box :administrator %></tr>
 	</table>
 
