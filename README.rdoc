@@ -1,0 +1,29 @@
+= Care Network Attendance
+
+Care Network Attendance is a Ruby-on-Rails web application designed to take attendance in a distributed fashion for small-group-based churches. The important part is the followup by the small group leaders, and communicating the reason why people were absent. In this way, concerns can be quickly addressed, and people can be helped.
+
+    Copyright (C) 2010 David Krider
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+== Plugins
+  * wicked_pdf
+  * paperclip
+  * acts_as_tree
+  * will_paginate
+
+== Important
+
+It's important to realize how this application is working. When a group is viewed to take attendance, the Rails call is to `find_or_create'. If attendance is NOT subsequently taken, there will be a load of attendances in the database with a NULL status_id. These orphans _should_ be infrequent. They represent a problem that needs to be caught and corrected with the reminder notification, which you will want to cron to run the day after your standard services.

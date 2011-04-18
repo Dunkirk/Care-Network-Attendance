@@ -1,19 +1,22 @@
 <h2>History for <%= @person.full_name %></h2>
 
-<% @person.groups.each { |g| g.network }.uniq.each do |network| %>
+<% @person.groups.map { |g| g.network }.each do |network| %>
+	<% network_absences = @absences.select { |a| a.service.network == network } %>
+	<% network_attendances = @attendances.select { |a| a.service.network == network } %>
 
-<h3><%= network.designation %></h3>
+	<h3><%= network.designation %></h3>
 
-<table>
-	<tr><th>Service<th>Excuse<th>Note</tr>
-	<% @absences.select { |a| a.service.network == network }.each do |absence| %>
-		<tr><td><%= absence.service.printable_date %><td><%= absence.status.designation %>
-			<td><%= absence.note %></tr>
-	<% end %>
-</table>
+	<table>
+		<tr><th>Service<th>Excuse<th>Note</tr>
+		<% network_absences.each do |absence| %>
+			<tr><td><%= absence.service.printable_date %><td><%= absence.status.designation %>
+				<td><%= absence.note %></tr>
+		<% end %>
+	</table>
 
-<h4><%= @absences.count %> absences in <%= @attendances.count %> services:
-(<%= sprintf("%0.2f%", 100 - (@absences.count.to_f / @attendances.count) * 100) %>)</h4>
-<p>&nbsp;</p>
+	<h4><%= network_absences.count %> absences in <%= network_attendances.count %> services
+		(<%= sprintf("%0.2f%% attendance", 100 - (network_absences.count.to_f / 
+			network_attendances.count.to_f) * 100) %>)</h4>
+	<p>&nbsp;</p>
 
 <% end %>

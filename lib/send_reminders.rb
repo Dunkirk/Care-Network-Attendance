@@ -5,7 +5,6 @@ networks.each do |network|
 	service = Service.last(:conditions => "DATE(date_and_time) <= DATE(NOW()) and " +
 		"network_id = #{network.id}", :order => 'date_and_time')
 	unless service.nil?
-		# I don't know why `contacted != true' doesn't work by itself...
 		absences = Attendance.all(:conditions => "service_id = #{service.id} and " +
 			"status_id > 4 and (contacted = false or contacted is null)")
 		groups = Group.all.select { |g| g.children.empty? && g.network_id == network.id }
@@ -16,7 +15,10 @@ networks.each do |network|
 			else
 				current = false
 				group.people.each do |p|
-					current = true if !p.attendances.empty? && p.attendances.last.service == service
+					if !p.attendances.empty? && p.attendances.last.service == service
+						current = true
+						break
+					end
 				end
 				unless current
 					Notifications.deliver_reminder(service, group.leader, group_absences)

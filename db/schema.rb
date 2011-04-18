@@ -9,20 +9,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110415101405) do
+ActiveRecord::Schema.define(:version => 20110418190808) do
 
   create_table "attendances", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "service_id"
     t.integer  "person_id"
-    t.string   "status_id"
+    t.integer  "status_id"
     t.boolean  "contacted"
     t.text     "note"
   end
 
   add_index "attendances", ["person_id"], :name => "index_attendances_on_person_id"
   add_index "attendances", ["service_id"], :name => "index_attendances_on_service_id"
+  add_index "attendances", ["status_id"], :name => "index_attendances_on_status_id"
 
   create_table "groups", :force => true do |t|
     t.datetime "created_at"
