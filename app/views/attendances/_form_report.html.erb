@@ -10,7 +10,7 @@
   <% @attendances.each do |attendance| %>
     <tr>
       <td><%= attendance.person.full_name %>
-      <td><%= attendance.person.groups[0].designation unless
+      <td><%= attendance.person.primary_group.designation unless
 				attendance.person.groups.empty? %>
 			<td class="<%= colorize(attendance.status.id) %>">
 				<%= attendance.status.designation %>

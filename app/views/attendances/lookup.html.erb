@@ -1,8 +1,12 @@
 <h2>History for <%= @person.full_name %></h2>
 
+<% @person.groups.each { |g| g.network }.uniq.each do |network| %>
+
+<h3><%= network.designation %></h3>
+
 <table>
 	<tr><th>Service<th>Excuse<th>Note</tr>
-	<% @absences.each do |absence| %>
+	<% @absences.select { |a| a.service.network == network }.each do |absence| %>
 		<tr><td><%= absence.service.printable_date %><td><%= absence.status.designation %>
 			<td><%= absence.note %></tr>
 	<% end %>
@@ -11,3 +15,5 @@
 <h4><%= @absences.count %> absences in <%= @attendances.count %> services:
 (<%= sprintf("%0.2f%", 100 - (@absences.count.to_f / @attendances.count) * 100) %>)</h4>
 <p>&nbsp;</p>
+
+<% end %>
