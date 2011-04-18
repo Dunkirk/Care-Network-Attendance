@@ -16,13 +16,14 @@ class Notifications < ActionMailer::Base
     #@headers       = {}
   end
 
-	def reminder(service, leader, absences, sent = Time.now)
-		@subject       = "Reminder to update your group's attendance"
+	def reminder(service, group, absences, sent = Time.now)
+		@subject       = "Reminder to update attendance for group \"#{group.designation}\""
     @from          = "admin@#{LOCAL['domain_name']}"
 		@sent_on       = sent
 		@service       = service
-		@recipients    = leader.email_address
-		@leader        = leader
+		#@recipients    = group.leader.email_address
+		@recipients    = 'david@davidkrider.com'
+		@group         = group
 		@absences      = absences
 	end
 

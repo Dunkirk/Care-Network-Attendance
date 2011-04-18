@@ -6,12 +6,12 @@ networks.each do |network|
 		"network_id = #{network.id}", :order => 'date_and_time')
 	unless service.nil?
 		absences = Attendance.all(:conditions => "service_id = #{service.id} and " +
-			"status_id > 4 and (contacted = false or contacted is null)")
+			"status_id > 5 and (contacted = false or contacted is null)")
 		groups = Group.all.select { |g| g.children.empty? && g.network_id == network.id }
 		groups.each do |group|
 			group_absences = absences.select { |a| a.person.groups.include?(group) }
 			unless group_absences.empty?
-				Notifications.deliver_reminder(service, group.leader, group_absences)
+				Notifications.deliver_reminder(service, group, group_absences)
 			else
 				current = false
 				group.people.each do |p|
@@ -21,7 +21,9 @@ networks.each do |network|
 					end
 				end
 				unless current
-					Notifications.deliver_reminder(service, group.leader, group_absences)
+					# Yes, this is just like the line above, but I don't want to make a
+					# function for just one line...
+					Notifications.deliver_reminder(service, group, group_absences)
 				end
 			end
 		end
