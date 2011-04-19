@@ -9,8 +9,8 @@ class ServicesController < ApplicationController
 	# GET /services.xml
 	def index
 		@services = Service.paginate :page => params[:page],
-			:conditions => "date_and_time <= NOW()",
-			:order => "date_and_time DESC", :limit => 20
+			:conditions => "dateandtime <= NOW()",
+			:order => "dateandtime DESC", :limit => 20
 		respond_to do |format|
 			format.html # index.html.erb
 			format.xml	{ render :xml => @services }

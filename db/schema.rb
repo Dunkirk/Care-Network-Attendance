@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110418190808) do
+ActiveRecord::Schema.define(:version => 20110419013509) do
 
   create_table "attendances", :force => true do |t|
     t.datetime "created_at"
@@ -77,10 +77,19 @@ ActiveRecord::Schema.define(:version => 20110418190808) do
     t.string   "phone_number"
   end
 
+  create_table "schedules", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.time     "standard_time"
+    t.string   "default_day"
+    t.integer  "network_id"
+    t.string   "description"
+  end
+
   create_table "services", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "date_and_time"
+    t.datetime "dateandtime"
     t.text     "description"
     t.integer  "network_id"
   end

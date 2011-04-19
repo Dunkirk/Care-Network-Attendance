@@ -2,10 +2,10 @@ class Service < ActiveRecord::Base
 	has_many :attendances
 	belongs_to :network
 
-	validates_uniqueness_of :date_and_time, :scope => :network_id
+	validates_uniqueness_of :dateandtime, :scope => :network_id
 	
 	def printable_date
-		self.date_and_time.to_datetime.strftime("%a, %b %d, %Y @ %H:%M %P")
+		self.dateandtime.to_datetime.strftime("%a, %b %d, %Y @ %H:%M %P")
 	end
 
 end

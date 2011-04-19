@@ -3,9 +3,9 @@
 <% form_for(@service) do |f| %>
   <%= f.error_messages %>
   <table>
-    <tr><th><%= f.label :network , "Network" %><td><%= collection_select(:service, :network_id,
-      Network.find(:all), :id, :designation) %></tr>
-    <tr><th><%= f.label :date_and_time %><td><%= datetime_select(:service, :date_and_time) %></tr>
+    <tr><th><%= f.label :network , "Network" %><td><%= f.collection_select :network_id,
+      Network.find(:all), :id, :designation %></tr>
+    <tr><th><%= f.label :dateandtime %><td><%= datetime_select :service, :dateandtime %></tr>
     <tr><th><%= f.label :description %><td><%= f.text_field :description %></tr>
   </table>
 	<p style="text-align: center">

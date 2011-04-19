@@ -78,8 +78,8 @@ class AttendancesController < ApplicationController
 			@group = nil
 		end
 		@services = Service.find_all_by_network_id(@network.id,
-			:conditions => "DATE(date_and_time) <= '#{Date.today.strftime('%y-%m-%d')}'",
-			:limit => 10, :order => "date_and_time DESC")
+			:conditions => "DATE(dateandtime) <= '#{Date.today.strftime('%y-%m-%d')}'",
+			:limit => 10, :order => "dateandtime DESC")
 		if session[:service_id]
 			@service = Service.find(session[:service_id])
 		else
@@ -88,7 +88,7 @@ class AttendancesController < ApplicationController
 		unless @group.nil?
 			@attendances = Array.new()
 			@group.people.each do |member|
-				@attendances << Attendance.find_or_create_by_person_id_and_service_id(member.id, @service.id)
+				@attendances << Attendance.find_or_initialize_by_person_id_and_service_id(member.id, @service.id)
 			end
 		end
 	end
@@ -98,8 +98,8 @@ class AttendancesController < ApplicationController
 		session[:group_id] = @group.id
 		@network = @group.network
 		@services = Service.find_all_by_network_id(@network.id,
-			:conditions => "DATE(date_and_time) <= '#{Date.today.strftime('%y-%m-%d')}'",
-			:limit => 10, :order => "date_and_time DESC")
+			:conditions => "DATE(dateandtime) <= '#{Date.today.strftime('%y-%m-%d')}'",
+			:limit => 10, :order => "dateandtime DESC")
 		if session[:service_id]
 			@service = Service.find(session[:service_id])
 		else
@@ -107,7 +107,7 @@ class AttendancesController < ApplicationController
 		end
 		@attendances = Array.new()
 		@group.people.each do |member|
-			@attendances << Attendance.find_or_create_by_person_id_and_service_id(member.id,
+			@attendances << Attendance.find_or_initialize_by_person_id_and_service_id(member.id,
 				@service.id)
 		end
 	end
@@ -118,7 +118,7 @@ class AttendancesController < ApplicationController
 		@group = Group.find(params[:group_id], :include => :people)
 		@attendances = Array.new()
 		@group.people.each do |member|
-			@attendances << Attendance.find_or_create_by_person_id_and_service_id(member.id,
+			@attendances << Attendance.find_or_initialize_by_person_id_and_service_id(member.id,
 				@service.id)
 		end
 	end
@@ -136,8 +136,8 @@ class AttendancesController < ApplicationController
 			@network = Network.find(1) # Whole church.
 		end
 		@services = Service.find_all_by_network_id(@network.id,
-			:conditions => "DATE(date_and_time) <= '#{Date.today.strftime('%y-%m-%d')}'",
-			:order => "date_and_time DESC")
+			:conditions => "DATE(dateandtime) <= '#{Date.today.strftime('%y-%m-%d')}'",
+			:order => "dateandtime DESC")
     if session[:service_id]
 			@service = Service.find(session[:service_id])
 		else
@@ -154,8 +154,8 @@ class AttendancesController < ApplicationController
     @network = Network.find(params[:network_id])
 		session[:network_id] = @network.id
     @services = Service.find_all_by_network_id(@network.id,
-			:conditions => "DATE(date_and_time) <= '#{Date.today.strftime('%y-%m-%d')}'",
-			:order => "date_and_time DESC")
+			:conditions => "DATE(dateandtime) <= '#{Date.today.strftime('%y-%m-%d')}'",
+			:order => "dateandtime DESC")
 		# Technically, we should check if the service id in the session is contained
 		# in the @services array before using it.
 		if session[:service_id]
@@ -204,8 +204,8 @@ class AttendancesController < ApplicationController
 			@group = nil
 		end
 		@services = Service.find_all_by_network_id(@network.id,
-			:conditions => "DATE(date_and_time) <= '#{Date.today.strftime('%y-%m-%d')}'",
-			:limit => 10, :order => "date_and_time DESC")
+			:conditions => "DATE(dateandtime) <= '#{Date.today.strftime('%y-%m-%d')}'",
+			:limit => 10, :order => "dateandtime DESC")
 		if session[:service_id]
 			@service = Service.find(session[:service_id])
 		else
@@ -214,7 +214,7 @@ class AttendancesController < ApplicationController
 		unless @group.nil?
 			@attendances = Array.new()
 			@group.people.each do |member|
-				@attendances << Attendance.find_or_create_by_person_id_and_service_id(member.id,
+				@attendances << Attendance.find_or_initialize_by_person_id_and_service_id(member.id,
 					@service.id)
 			end
 		end
@@ -225,8 +225,8 @@ class AttendancesController < ApplicationController
 		session[:group_id] = @group.id
 		@network = @group.network
 		@services = Service.find_all_by_network_id(@network.id,
-			:conditions => "DATE(date_and_time) <= '#{Date.today.strftime('%y-%m-%d')}'",
-			:limit => 10, :order => "date_and_time DESC")
+			:conditions => "DATE(dateandtime) <= '#{Date.today.strftime('%y-%m-%d')}'",
+			:limit => 10, :order => "dateandtime DESC")
 		if session[:service_id]
 			@service = Service.find(session[:service_id])
 		else
@@ -234,7 +234,7 @@ class AttendancesController < ApplicationController
 		end
 		@attendances = Array.new()
 		@group.people.each do |member|
-			@attendances << Attendance.find_or_create_by_person_id_and_service_id(member.id,
+			@attendances << Attendance.find_or_initialize_by_person_id_and_service_id(member.id,
 				@service.id)
 		end
 	end
@@ -245,7 +245,7 @@ class AttendancesController < ApplicationController
 		@group = Group.find(params[:group_id], :include => :people)
 		@attendances = Array.new()
 		@group.people.each do |member|
-			@attendances << Attendance.find_or_create_by_person_id_and_service_id(member.id,
+			@attendances << Attendance.find_or_initialize_by_person_id_and_service_id(member.id,
 				@service.id)
 		end
 	end
@@ -264,11 +264,11 @@ class AttendancesController < ApplicationController
 		#end_date = Date.new(params[:service]["end(1i)".to_s].to_i, 
 		#	params[:service]["end(2i)".to_s].to_i, 
 		#	params[:service]["end(3i)".to_s].to_i) 
-		#@services = Service.all(:conditions => "date_and_time >= '#{start_date}' " +
-		#	"and date_and_time <= '#{end_date}'")
+		#@services = Service.all(:conditions => "dateandtime >= '#{start_date}' " +
+		#	"and dateandtime <= '#{end_date}'")
 		@attendances = Attendance.find_all_by_person_id(@person.id)
 		@absences = Attendance.find_all_by_person_id(@person.id, :conditions => 
-			'status_id > 1', :include => :service, :order => 'services.date_and_time')
+			'status_id > 1', :include => :service, :order => 'services.dateandtime')
 	end
 
 end

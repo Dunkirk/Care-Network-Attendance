@@ -24,6 +24,6 @@ Care Network Attendance is a Ruby-on-Rails web application designed to take atte
   * acts_as_tree
   * will_paginate
 
-== Important
+== Jobs
 
-It's important to realize how this application is working. When a group is viewed to take attendance, the Rails call is to `find_or_create'. If attendance is NOT subsequently taken, there will be a load of attendances in the database with a NULL status_id. These orphans _should_ be infrequent. They represent a problem that needs to be caught and corrected with the reminder notification, which you will want to cron to run the day after your standard services.
+There are 2 jobs you will want to cron to run periodically. The first is a reminder to followup on questionable absences the day after whatever services you wish. (For instance, Monday morning at 10 am.) The other is a service generator based on the schedules you put into the system.

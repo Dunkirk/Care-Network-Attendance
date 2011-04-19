@@ -2,7 +2,7 @@
 
 <table>
 	<tr><th>Service Time and Date<th>Network<th>Description</tr>
-	<% for service in @services %>
+	<% @services.each do |service| %>
 		<tr>
 			<td><%= link_to service.printable_date, service %>
 			<td><%= service.network.designation %>
@@ -15,5 +15,5 @@
 <%= will_paginate @services %></p>
 
 <p class="navigation">
-	<%= link_to 'New service', new_service_path %>
+	<%= link_to 'New', new_service_path %>
 </p>
