@@ -21,8 +21,7 @@ class Notifications < ActionMailer::Base
     @from          = "admin@#{LOCAL['domain_name']}"
 		@sent_on       = sent
 		@service       = service
-		#@recipients    = group.leader.email_address
-		@recipients    = 'david@davidkrider.com'
+		@recipients    = group.leader.email_address
 		@group         = group
 		@absences      = absences
 	end
