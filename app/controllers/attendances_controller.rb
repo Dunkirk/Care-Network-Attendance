@@ -88,7 +88,7 @@ class AttendancesController < ApplicationController
 		unless @group.nil?
 			@attendances = Array.new()
 			@group.people.each do |member|
-				@attendances << Attendance.find_or_initialize_by_person_id_and_service_id(member.id, @service.id)
+				@attendances << Attendance.find_or_create_by_person_id_and_service_id(member.id, @service.id)
 			end
 		end
 	end
@@ -107,7 +107,7 @@ class AttendancesController < ApplicationController
 		end
 		@attendances = Array.new()
 		@group.people.each do |member|
-			@attendances << Attendance.find_or_initialize_by_person_id_and_service_id(member.id,
+			@attendances << Attendance.find_or_create_by_person_id_and_service_id(member.id,
 				@service.id)
 		end
 	end
@@ -118,7 +118,7 @@ class AttendancesController < ApplicationController
 		@group = Group.find(params[:group_id], :include => :people)
 		@attendances = Array.new()
 		@group.people.each do |member|
-			@attendances << Attendance.find_or_initialize_by_person_id_and_service_id(member.id,
+			@attendances << Attendance.find_or_create_by_person_id_and_service_id(member.id,
 				@service.id)
 		end
 	end
@@ -214,7 +214,7 @@ class AttendancesController < ApplicationController
 		unless @group.nil?
 			@attendances = Array.new()
 			@group.people.each do |member|
-				@attendances << Attendance.find_or_initialize_by_person_id_and_service_id(member.id,
+				@attendances << Attendance.find_or_create_by_person_id_and_service_id(member.id,
 					@service.id)
 			end
 		end
@@ -234,7 +234,7 @@ class AttendancesController < ApplicationController
 		end
 		@attendances = Array.new()
 		@group.people.each do |member|
-			@attendances << Attendance.find_or_initialize_by_person_id_and_service_id(member.id,
+			@attendances << Attendance.find_or_create_by_person_id_and_service_id(member.id,
 				@service.id)
 		end
 	end
@@ -245,7 +245,7 @@ class AttendancesController < ApplicationController
 		@group = Group.find(params[:group_id], :include => :people)
 		@attendances = Array.new()
 		@group.people.each do |member|
-			@attendances << Attendance.find_or_initialize_by_person_id_and_service_id(member.id,
+			@attendances << Attendance.find_or_create_by_person_id_and_service_id(member.id,
 				@service.id)
 		end
 	end
