@@ -82,7 +82,8 @@ class AttendancesController < ApplicationController
 			:limit => 10, :order => "dateandtime DESC")
 		if session[:service_id]
 			@service = Service.find(session[:service_id])
-		else
+		end
+		unless @service && @service.network == @network
 			@service = @services.first
 		end
 		unless @group.nil?
@@ -102,7 +103,8 @@ class AttendancesController < ApplicationController
 			:limit => 10, :order => "dateandtime DESC")
 		if session[:service_id]
 			@service = Service.find(session[:service_id])
-		else
+		end
+		unless @service && @service.network == @network
 			@service = @services.first
 		end
 		@attendances = Array.new()
@@ -138,11 +140,11 @@ class AttendancesController < ApplicationController
 		@services = Service.find_all_by_network_id(@network.id,
 			:conditions => "DATE(dateandtime) <= '#{Date.today.strftime('%y-%m-%d')}'",
 			:order => "dateandtime DESC")
-    if session[:service_id]
+		if session[:service_id]
 			@service = Service.find(session[:service_id])
-		else
+		end
+		unless @service && @service.network == @network
 			@service = @services.first
-			session[:service_id] = @service.id
 		end
 		@attendances = Attendance.find_all_by_service_id(@service.id, :conditions =>
 			"status_id != 1", :include => :status)
@@ -156,12 +158,11 @@ class AttendancesController < ApplicationController
     @services = Service.find_all_by_network_id(@network.id,
 			:conditions => "DATE(dateandtime) <= '#{Date.today.strftime('%y-%m-%d')}'",
 			:order => "dateandtime DESC")
-		# Technically, we should check if the service id in the session is contained
-		# in the @services array before using it.
 		if session[:service_id]
 			@service = Service.find(session[:service_id])
-		else
-    	@service = @services.first
+		end
+		unless @service && @service.network == @network
+			@service = @services.first
 		end
 		if @service
 			@attendances = Attendance.find_all_by_service_id(@service.id, :conditions =>
@@ -206,10 +207,11 @@ class AttendancesController < ApplicationController
 		@services = Service.find_all_by_network_id(@network.id,
 			:conditions => "DATE(dateandtime) <= '#{Date.today.strftime('%y-%m-%d')}'",
 			:limit => 10, :order => "dateandtime DESC")
-		if session[:service_id]
+    if session[:service_id]
 			@service = Service.find(session[:service_id])
 		else
 			@service = @services.first
+			session[:service_id] = @service.id
 		end
 		unless @group.nil?
 			@attendances = Array.new()
@@ -229,7 +231,8 @@ class AttendancesController < ApplicationController
 			:limit => 10, :order => "dateandtime DESC")
 		if session[:service_id]
 			@service = Service.find(session[:service_id])
-		else
+		end
+		unless @service && @service.network == @network
 			@service = @services.first
 		end
 		@attendances = Array.new()
