@@ -271,4 +271,20 @@ class AttendancesController < ApplicationController
 			'status_id > 1', :include => :service, :order => 'services.dateandtime')
 	end
 
+	def choose
+		@service = Service.find(params[:service][:id])
+		@group = Group.find(params[:group][:id], :include => :people)
+		@attendances = []
+		@group.people.each do |member|
+			@attendances << Attendance.find_or_create_by_person_id_and_service_id(member.id,
+				@service.id)
+		end
+	end
+
+	def register
+		Attendance.update(params[:attendance].keys, params[:attendance].values)
+		flash[:notice] = 'Attendance was taken!'
+		redirect_to :action => "old"
+	end
+
 end
