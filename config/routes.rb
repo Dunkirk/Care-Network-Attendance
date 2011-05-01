@@ -3,7 +3,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :networks
 
-
 	map.connect 'users/change', :controller => 'users', :action => 'change'
 	map.connect 'users/reset', :controller => 'users', :action => 'reset'
 	map.connect 'users/login', :controller => 'users', :action => 'login'

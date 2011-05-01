@@ -73,14 +73,20 @@ protected
 		redirect_to :controller => 'users', :action => 'login'
 	end
 
-  MOBILE_BROWSERS = ["android", "ipod", "opera mini", "blackberry", "palm","hiptop","avantgo","plucker", "xiino","blazer","elaine", "windows ce; ppc;", "windows ce; smartphone;","windows ce; iemobile", "up.browser","up.link","mmp","symbian","smartphone", "midp","wap","vodafone","o2","pocket","kindle", "mobile","pda","psp","treo"]
+	MOBILE_BROWSERS = ["android", "ipod", "opera mini", "blackberry", "palm","hiptop","avantgo","plucker", "xiino","blazer","elaine", "windows ce; ppc;", "windows ce; smartphone;","windows ce; iemobile", "up.browser","up.link","mmp","symbian","smartphone", "midp","wap","vodafone","o2","pocket","kindle", "mobile","pda","psp","treo"]
 
-  def detect_browser
-    agent = request.headers["HTTP_USER_AGENT"].downcase
-    MOBILE_BROWSERS.each do |m|
-      return "mobile" if agent.match(m)
-    end
-    return "application"
-  end
+	def detect_browser
+		agent = request.headers["HTTP_USER_AGENT"].downcase
+		MOBILE_BROWSERS.each do |m|
+			return "mobile" if agent.match(m)
+		end
+		return "application"
+	end
+
+	def redirect_palm
+		agent = request.headers['HTTP_USER_AGENT'].downcase
+		return 'old' if agent.match('blazer')
+		'take'
+	end
 
 end

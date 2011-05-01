@@ -15,9 +15,10 @@
 <div id="header">
 	<p class="navigation">
 		<%= link_to 'Take', :controller => 'attendances', :action => 'take' %>
+		| <%= link_to 'Palms', :controller => 'attendances', :action => 'old' %>
 		| <%= link_to 'Followup', :controller => 'attendances', :action => 'followup' %>
     | <%= link_to 'Report', :controller => 'attendances', :action => 'report' %>
-		| <%= link_to "Directory", :controller => 'people', :action => 'directory' %></p>
+	</p>
 </div>
 
 <p class="flash"><%= flash[:notice] %></p>
