@@ -13,10 +13,12 @@
 				<td><%= absence.note %></tr>
 		<% end %>
 	</table>
-
-	<h4><%= network_absences.count %> absences in <%= network_attendances.count %> services
-		(<%= sprintf("%0.2f%% attendance", 100 - (network_absences.count.to_f / 
-			network_attendances.count.to_f) * 100) %>)</h4>
+	<% possible = @services.select { |s| s.network == network }.count %>
+	<h4><%= network_absences.count %> absences in <%= network_attendances.count %> services 
+		accounted for (<%= sprintf("%0.2f%% attendance", 100 - (network_absences.count.to_f / 
+		network_attendances.count.to_f) * 100) %>)<br/>
+		out of <%= possible %> in the time range (<%= sprintf("%0.2f%% on the roll",
+		(network_attendances.count.to_f / possible) * 100) %>)</h4>
 	<p>&nbsp;</p>
 
 <% end %>

@@ -261,17 +261,21 @@ class AttendancesController < ApplicationController
 
 	def lookup
 		@person = Person.find(params[:person][:id])
-		#start_date = Date.new(params[:service]["start(1i)".to_s].to_i, 
-		#	params[:service]["start(2i)".to_s].to_i, 
-		#	params[:service]["start(3i)".to_s].to_i) 
-		#end_date = Date.new(params[:service]["end(1i)".to_s].to_i, 
-		#	params[:service]["end(2i)".to_s].to_i, 
-		#	params[:service]["end(3i)".to_s].to_i) 
-		#@services = Service.all(:conditions => "dateandtime >= '#{start_date}' " +
-		#	"and dateandtime <= '#{end_date}'")
-		@attendances = Attendance.find_all_by_person_id(@person.id)
+		start_date = Date.new(params[:service]["start(1i)".to_s].to_i, 
+			params[:service]["start(2i)".to_s].to_i, 
+			params[:service]["start(3i)".to_s].to_i) 
+		end_date = Date.new(params[:service]["end(1i)".to_s].to_i, 
+			params[:service]["end(2i)".to_s].to_i, 
+			params[:service]["end(3i)".to_s].to_i) 
+		@services = Service.all(:conditions => "dateandtime >= '#{start_date}' " +
+			"and dateandtime <= '#{end_date}'")
+		@attendances = Attendance.find_all_by_person_id(@person.id, :conditions => 
+			"services.dateandtime >= '#{start_date}' and services.dateandtime <= '#{end_date}'",
+			:include => :service, :order => 'services.dateandtime')
+		# FIXME? "Present" relies on Status with id = 1
 		@absences = Attendance.find_all_by_person_id(@person.id, :conditions => 
-			'status_id > 1', :include => :service, :order => 'services.dateandtime')
+			"services.dateandtime >= '#{start_date}' and services.dateandtime <= '#{end_date}'" +
+			'and status_id > 1', :include => :service, :order => 'services.dateandtime')
 	end
 
 	def choose

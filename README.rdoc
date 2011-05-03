@@ -24,6 +24,24 @@ Care Network Attendance is a Ruby-on-Rails web application designed to take atte
   * acts_as_tree
   * will_paginate
 
-== Jobs
+== Reminders
 
-There are 2 jobs you will want to cron to run periodically. The first is a reminder to followup on questionable absences the day after whatever services you wish. (For instance, Monday morning at 10 am.) The other is a service generator based on the schedules you put into the system.
+There is a job you may want to cron to run periodically. This is a reminder to followup on questionable absences the day after whatever services you wish. (For instance, Monday morning at 10 am.)
+
+== Theory
+
+From an application administrator's viewpoint, it's important to understand the shortcut, or assumption, that's buried in this application. When the attendance form is generated for a group on a date, the controller is find_or_creating each attendance to feed back to the app. If this form is simply browsed, but attendance is NOT subsequently taken, there will be an attendance in the database for each person in the group WITH A NULL STATUS. While I don't particularly care for this, I've written around it for the followup job, and, from every angle I can think about it, it should make no difference. Theoretically, if there's a service to take attendance for, everyone should have their attendance taken, and there shouldn't be any "orphans" anyway.
+
+ However, it still bugs me from a database administrator's point of view, and I've started a branch in git devoted to fixing this situation. Unfortunately, using find_or_initialize has a LOT of interesting implications when taking attendance for a group of people, some of whom might have already had attendance taken. Maybe this is a bug, and I should limit a person's membership to only one group in a network, but, as it stands in my implementation, each group's leader is contained within their group, and the group above them. This has led to the situation I've described, which will break using find_or_initialize. At the time of this writing, I figure I'm half done with the patch, but the trickiest parts are yet to work out. It's in the git repo on the create_or_initialize branch.
+
+I'm just realizing that I could somehow block out the "level 2" groups from having their attendance taken, and eliminate this problem, but it doesn't feel right to do that, since a larger church could wind up having more than just 3 levels. However, however, now that I think about _that_, maybe the theory here is that all the even-level groups should be skipped... Anyway. Thoughts welcome.
+
+== Future
+
+	1. There are a few places in the app that work because the Statuses are in order. "Present" has a database id of 1, and the "unexcused" absences start at id > 5. There are a couple thoughts about other ways of going about this. You could just reference a list of static keywords defined somewhere (e.g., STATUSES = ["Present", "Sick, ...]), and/or a boolean could be placed on the model to indicate "excusedness". Right now, I'm sticking with this.
+
+	2. In the immediate future, I need to extend the app to capture guest attendance. The report would be inverted. Instead of absences, we'd want to see "presences". This is fine, but the key here is that it must be EASY EASY EASY to add people to the list. A church can't have greeters getting bogged down in the friction of adding someone to the database. There are caveats, of course, people don't like giving out information at the "guest" stage any more, and I can't say I blame them. Still, it needs to be tried.
+
+	3. I could really stand to do a load of cleanup on the controllers and DRY out my code. Thinking about it as I write this, I realize some of my reticence for doing this comes from the fact that Rails already requires mucking about in a half dozen files to do any one thing, and I don't want to split my code out to yet another file... That's probably a poor excuse. YMMV.
+
+	4. Along the same lines as the previous, I could really stand to write tests for this application. ;-)
