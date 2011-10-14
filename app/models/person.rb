@@ -25,7 +25,7 @@ class Person < ActiveRecord::Base
 	end
 
 	def primary_group
-		groups.select { |g| g.network == Network.find(1) }[0]
+		groups.select { |g| g.network == Network.find(1) }[0] || groups[0]
 	end
 
 	validates_uniqueness_of :first_name, :scope => :last_name

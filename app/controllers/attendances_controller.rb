@@ -171,6 +171,9 @@ class AttendancesController < ApplicationController
 		else
 			@attendances = []
 		end
+		logger = Logger.new(STDERR)
+		logger.info("###############################")
+		logger.info(@service)
   end
 
 	def change_date_report
