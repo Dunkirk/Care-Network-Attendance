@@ -3,3 +3,4 @@ log/
 database.yml
 local.yml
 *.swp
+db/*.sql
